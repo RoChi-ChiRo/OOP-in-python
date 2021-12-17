@@ -42,6 +42,27 @@ class Student:
 
         return result
 
+    def __lt__(self, other):
+        if isinstance(other, Student):
+            if average_in_dict(self.grades) < average_in_dict(other.grades):
+                return True
+            else:
+                return False
+
+    def __le__(self, other):
+        if isinstance(other, Student):
+            if average_in_dict(self.grades) <= average_in_dict(other.grades):
+                return True
+            else:
+                return False
+
+    def __eq__(self, other):
+        if isinstance(other, Student):
+            if average_in_dict(self.grades) == average_in_dict(other.grades):
+                return True
+            else:
+                return False
+
     def rate_lecturer(self, lecturer, grade):
         if isinstance(lecturer, Lecturer):
             for course in self.courses_in_progress:
@@ -70,6 +91,27 @@ class Lecturer(Mentor):
         res += '\nФамилия: ' + self.surname
         res += '\nСредняя оценка за лекции: ' + average_in_dict(self.grades)
         return res
+
+    def __lt__(self, other):
+        if isinstance(other, Lecturer):
+            if average_in_dict(self.grades) < average_in_dict(other.grades):
+                return True
+            else:
+                return False
+
+    def __le__(self, other):
+        if isinstance(other, Lecturer):
+            if average_in_dict(self.grades) <= average_in_dict(other.grades):
+                return True
+            else:
+                return False
+
+    def __eq__(self, other):
+        if isinstance(other, Lecturer):
+            if average_in_dict(self.grades) == average_in_dict(other.grades):
+                return True
+            else:
+                return False
 
 
 class Reviewer(Mentor):
@@ -137,3 +179,6 @@ if __name__ == '__main__':
     print('---')
     print(reviewer1)
     print(reviewer2)
+
+    print(not lecturer1 <= lecturer2)
+    print(student1 == student1, student1 == student2)
